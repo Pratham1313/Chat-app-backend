@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: [""],
+    origin: ["*"],
     methods: ["POST", "GET"],
     credentials: true,
   })
