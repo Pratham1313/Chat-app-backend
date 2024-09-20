@@ -11,23 +11,13 @@ import userroutes from "./routes/user.js";
 import { app, server } from "./socket/socket.js";
 
 dotenv.config();
-app.use((req, res, next) => {
-    res.set({
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "*",
-        "Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
-    });
 
-    next();
-});
-
-app.use(
-  cors({
-    origin: ["*"],
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: "*", // Allow all origins for testing (update for production)
+  methods: ["GET", "POST", "OPTIONS"], // Allow specified methods
+  allowedHeaders: ["Origin", "Content-Type", "X-Auth-Token"], // Allow specific headers
+  credentials: true, // Allow credentials if needed
+}));
 
 app.get("/", (req, res) => {
   res.json({ message: "hello world" });
