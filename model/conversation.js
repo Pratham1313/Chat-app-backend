@@ -8,17 +8,20 @@ const conversationSchema = mongoose.Schema(
         ref: "User",
       },
     ],
-
     messages: [
       {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Messages",
         default: [],
       },
     ],
+    encryptionToken: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-const User = mongoose.model("Conversations", conversationSchema);
-export default User;
+const Conversations = mongoose.model("Conversations", conversationSchema);
+export default Conversations;

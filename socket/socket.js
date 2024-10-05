@@ -7,8 +7,10 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["*"],
+    origin: "http://localhost:5173", // Update with the frontend URL
     methods: ["GET", "POST"],
+    allowedHeaders: ["Origin", "Content-Type", "X-Auth-Token"],
+    credentials: true, // If you're using cookies or sessions
   },
 });
 
